@@ -11,9 +11,9 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #0b021a, #2a0a4a, #0f2b4d, #083025);
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
             background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
+            animation: gradientBG 15s ease infinite;
             color: white;
             height: 100vh;
             overflow: hidden;
@@ -28,66 +28,44 @@
             100% { background-position: 0% 50%; }
         }
 
-        .stars, .twinkling {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .stars {
-            background: #000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-            z-index: 0;
-        }
-
-        .twinkling {
-            background: transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-            animation: move-twink-back 200s linear infinite;
-            z-index: 1;
-        }
-
-        @keyframes move-twink-back {
-            from {background-position:0 0;}
-            to {background-position:-10000px 5000px;}
-        }
-
         #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 2;
+            z-index: 1;
         }
 
         .container {
             position: relative;
-            z-index: 3;
+            z-index: 2;
             padding: 2rem 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 20px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             text-align: center;
             animation: fadeIn 2s ease-out;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            animation: fadeIn 2s ease-out, textGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 105, 180, 0.6); }
+            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 20px rgba(135, 206, 250, 0.6); }
         }
 
         p {
             font-size: 1.5rem;
             font-weight: 300;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
 
         @keyframes fadeIn {
@@ -103,7 +81,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             p {
                 font-size: 1.2rem;
@@ -115,8 +93,6 @@
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
     <div id="particles-js"></div>
 
     <div class="container">
@@ -129,36 +105,46 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 50,
+                    "value": 80,
                     "density": {
                         "enable": true,
                         "value_area": 800
                     }
                 },
                 "color": {
-                    "value": "#ffffff"
+                    "value": ["#FFFFFF", "#FFC0CB", "#ADD8E6", "#F0E68C"]
                 },
                 "shape": {
                     "type": "circle"
                 },
                 "opacity": {
-                    "value": 0.7,
+                    "value": 0.8,
                     "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.3,
+                        "sync": false
+                    }
                 },
                 "size": {
-                    "value": 2,
-                    "random": true,
+                    "value": 3,
+                    "random": true
                 },
                 "line_linked": {
-                    "enable": false,
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.2,
+                    "width": 1
                 },
                 "move": {
                     "enable": true,
-                    "speed": 1,
+                    "speed": 2,
                     "direction": "none",
                     "random": true,
                     "straight": false,
-                    "out_mode": "out",
+                    "out_mode": "out"
                 }
             },
             "interactivity": {
@@ -170,17 +156,17 @@
                     },
                     "onclick": {
                         "enable": true,
-                        "mode": 'push'
+                        "mode": "push"
                     }
                 },
                 "modes": {
-                    "bubble":{
+                    "bubble": {
                         "distance": 250,
+                        "size": 8,
                         "duration": 2,
-                        "size": 0,
-                        "opacity": 0
+                        "opacity": 1
                     },
-                    'push':{
+                    "push": {
                         "particles_nb": 4
                     }
                 }
